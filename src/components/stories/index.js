@@ -14,7 +14,11 @@ const Stories = () => {
       data={data}
       keyExtractor={({ name }) => name}
       renderItem={({ item }) => (
-        <Story imageUri={item.user.imageUri} name={item.user.name} />
+        <Story
+          imageUri={item.user.imageUri}
+          name={item.user.name}
+          key={uuid.v1()}
+        />
       )}
     />
   );
