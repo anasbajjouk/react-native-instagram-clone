@@ -8,7 +8,9 @@ import Stories from "../stories";
 const Feed = () => {
   return (
     <FlatList
-      ListHeaderComponent={<Stories />}
+      keyExtractor={({ name }) => name}
+      key={uuid()}
+      ListHeaderComponent={<Stories key={uuid()} />}
       data={data}
       renderItem={(item) => <Post post={item} key={uuid()} />}
     />

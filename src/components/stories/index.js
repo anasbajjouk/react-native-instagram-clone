@@ -8,6 +8,7 @@ import uuid from "react-native-uuid";
 const Stories = () => {
   return (
     <FlatList
+      key={uuid()}
       style={styles.container}
       showsHorizontalScrollIndicator={false}
       horizontal
@@ -17,7 +18,7 @@ const Stories = () => {
         <Story
           imageUri={item.user.imageUri}
           name={item.user.name}
-          key={uuid.v1()}
+          key={uuid()}
         />
       )}
     />

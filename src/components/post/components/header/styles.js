@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
   },
   left: {
     flexDirection: "row",
+    alignItems: "center",
+  },
+  right: {
+    marginRight: 15,
   },
   name: {
     fontWeight: "bold",

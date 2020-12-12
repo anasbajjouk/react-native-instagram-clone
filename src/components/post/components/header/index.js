@@ -13,9 +13,8 @@ const Header = ({ imageUri, name }) => {
       </View>
 
       <View style={styles.right}>
-        <MaterialCommunityIcons name="dots-vertical" size={20} color="black" />
+        <MaterialCommunityIcons name="dots-vertical" size={18} color="black" />
       </View>
-
     </View>
   );
 };
