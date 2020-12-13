@@ -27,7 +27,11 @@ const HomeRoutes = () => {
           headerTitleAlign: "center",
 
           headerTitle: () => (
-            <Image source={logo} style={{ width: 135 }} resizeMode="contain" />
+            <Image
+              source={logo}
+              style={{ width: 135, height: 50 }}
+              resizeMode="contain"
+            />
           ),
           headerLeft: () => (
             <MaterialIcons name="camera-alt" size={24} color="black" />

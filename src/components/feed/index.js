@@ -1,18 +1,16 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList } from "react-native";
 import Post from "../post";
 import data from "../../data/stories";
-import uuid from "react-native-uuid";
 import Stories from "../stories";
 
 const Feed = () => {
   return (
     <FlatList
-      keyExtractor={({ id }) => id}
-      key={uuid()}
-      ListHeaderComponent={<Stories key={uuid()} />}
+      keyExtractor={({ user: { id } }) => id}
+      ListHeaderComponent={<Stories />}
       data={data}
-      renderItem={(item) => <Post post={item} key={uuid()} />}
+      renderItem={(item) => <Post post={item} />}
     />
   );
 };

@@ -1,24 +1,22 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import Story from "../story";
+import { FlatList } from "react-native";
+import UserStoryPreview from "../userStoryPreview";
 import data from "../../data/stories";
 import { styles } from "./styles";
-import uuid from "react-native-uuid";
 
 const Stories = () => {
   return (
     <FlatList
-      key={uuid()}
       style={styles.container}
       showsHorizontalScrollIndicator={false}
       horizontal
       data={data}
-      keyExtractor={({ id }) => id}
+      keyExtractor={({ user: { id } }) => id}
       renderItem={({ item }) => (
-        <Story
+        <UserStoryPreview
           imageUri={item.user.imageUri}
           name={item.user.name}
-          key={uuid()}
+          userId={item.user.id}
         />
       )}
     />

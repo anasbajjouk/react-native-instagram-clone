@@ -9,9 +9,9 @@ const ProfilePicture = ({ uri, size = 60 }) => {
         style={[
           styles.imageContainer,
           {
-            width: size + 10,
-            height: size + 10,
-            borderRadius: (size + 10) / 2,
+            width: size + 8,
+            height: size + 8,
+            borderRadius: (size + 8) / 2,
           },
         ]}
       >
