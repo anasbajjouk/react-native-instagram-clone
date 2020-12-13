@@ -13,7 +13,7 @@ const Stories = () => {
       showsHorizontalScrollIndicator={false}
       horizontal
       data={data}
-      keyExtractor={({ name }) => name}
+      keyExtractor={({ id }) => id}
       renderItem={({ item }) => (
         <Story
           imageUri={item.user.imageUri}

@@ -1,16 +1,28 @@
 import React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import {
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+} from "react-native";
 import Feed from "../../components/feed";
-import Post from "../../components/post";
-import Stories from "../../components/stories";
-import data from "../../data/stories";
 
 function HomeScreen() {
   return (
     <>
-      <Feed />
+      <SafeAreaView style={styles.appContainer}>
+        <Feed />
+      </SafeAreaView>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  appContainer: {
+    // marginTop: Platform.OS === "android" ? StatusBar.currentHeight + 10 : 0,
+  },
+});
 
 export default HomeScreen;

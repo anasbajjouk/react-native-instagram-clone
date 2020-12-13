@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -33,7 +33,8 @@ const Footer = ({ postedTime, numberOfLikes }) => {
           </TouchableOpacity>
 
           <FontAwesome name="comment-o" size={25} color={"#545454"} />
-          <FontAwesome name="send-o" size={23} color={"#545454"} />
+          <MaterialIcons name="send" size={25} color={"#545454"} />
+          {/* <FontAwesome name="send-o" size={23} color={"#545454"} /> */}
         </View>
 
         <FontAwesome name="bookmark-o" size={25} color={"#545454"} />

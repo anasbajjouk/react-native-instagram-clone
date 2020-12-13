@@ -8,7 +8,7 @@ import Stories from "../stories";
 const Feed = () => {
   return (
     <FlatList
-      keyExtractor={({ name }) => name}
+      keyExtractor={({ id }) => id}
       key={uuid()}
       ListHeaderComponent={<Stories key={uuid()} />}
       data={data}
