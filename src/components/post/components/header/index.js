@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import ProfilePicture from "../../../profilePicture";
 import { styles } from "./styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";

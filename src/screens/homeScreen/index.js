@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-} from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import Feed from "../../components/feed";
 
 function HomeScreen() {

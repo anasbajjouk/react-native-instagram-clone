@@ -1,19 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import Body from "./components/body";
 import Footer from "./components/footer";
 import Header from "./components/header";
 
 const Post = ({ post }) => {
-  const myStories = post.item.stories[0];
-  
   return (
     <View>
-      <Header imageUri={post.item.user.imageUri} name={post.item.user.name} />
-      <Body imageUri={myStories.imageUri} />
+      <Header imageUri={post?.user?.image} name={post?.user?.name} />
+      <Body imageUri={post?.image} />
       <Footer
-        postedTime={myStories.postedTime}
-        numberOfLikes={myStories.numberOfLikes}
+        numberOfLikes={post?.likes}
+        postedTime={post?.createdAt}
+        caption={post?.caption}
       />
     </View>
   );

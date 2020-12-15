@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
-import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
 
-const Footer = ({ postedTime, numberOfLikes }) => {
+const Footer = ({ postedTime, numberOfLikes, caption }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
 
@@ -43,6 +41,7 @@ const Footer = ({ postedTime, numberOfLikes }) => {
       <Text style={styles.likes}>
         {likesCount} {likesCount > 1 ? "Likes" : "Like"}
       </Text>
+      <Text style={styles.caption}>{caption}</Text>
       <Text style={styles.postedTime}>{postedTime}</Text>
     </View>
   );

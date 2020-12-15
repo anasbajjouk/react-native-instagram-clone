@@ -1,59 +1,49 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
+import { useRoute } from "@react-navigation/native";
+import { API, graphqlOperation } from "aws-amplify";
 import {
   View,
   Text,
-  Platform,
-  StatusBar,
   ImageBackground,
   ActivityIndicator,
-  StyleSheet,
   TouchableWithoutFeedback,
   Dimensions,
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { MaterialIcons } from "@expo/vector-icons";
 import ProfilePicture from "../../components/profilePicture";
-import data from "../../data/stories";
+import { listStorys } from "../../../graphql/queries";
 import { styles } from "./styles";
 
 const StoryScreen = () => {
   const route = useRoute();
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
-  const [userStoriesState, setUserStoriesState] = useState(null);
+  const [stories, setStories] = useState([]);
   const [activeStoryIndex, setActiveStoryIndex] = useState(null);
 
   const userId = route.params.userId;
 
   useEffect(() => {
-    const userStories = data.find((storyData) => storyData.user.id === userId);
+    fetchStories();
 
-    setUserStoriesState(userStories);
     setActiveStoryIndex(0);
   }, []);
 
-  if (!userStoriesState) {
-    return (
-      <View>
-        <ActivityIndicator />
-      </View>
-    );
-  }
-
-  const activeStory = userStoriesState.stories[activeStoryIndex];
-
-  const navigateToNextUser = () => {
-    navigation.push("Story", { userId: (parseInt(userId) + 1).toString() });
+  const fetchStories = async () => {
+    try {
+      const storiesData = await API.graphql(graphqlOperation(listStorys));
+      setStories(storiesData.data.listStorys.items);
+    } catch (err) {
+      console.error("CUSTOM ERROR:", err.message);
+    }
   };
 
-  const navigateToPreviousUser = () => {
-    navigation.push("Story", { userId: (parseInt(userId) - 1).toString() });
-  };
+  const activeStory = stories[activeStoryIndex];
 
   const handleNextStory = () => {
-    if (activeStoryIndex >= userStoriesState.stories.length - 1) {
-      navigateToNextUser();
+    if (activeStoryIndex >= stories.length - 1) {
+      // navigateToNextUser();
       return;
     }
     setActiveStoryIndex(activeStoryIndex + 1);
@@ -61,7 +51,7 @@ const StoryScreen = () => {
 
   const handlePreviousStory = () => {
     if (activeStoryIndex <= 0) {
-      navigateToPreviousUser();
+      // navigateToPreviousUser();
       return;
     }
     setActiveStoryIndex(activeStoryIndex - 1);
@@ -79,18 +69,26 @@ const StoryScreen = () => {
     }
   };
 
+  if (!stories || stories.length === 0) {
+    return (
+      <View>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
   return (
     <>
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={handlePress}>
           <ImageBackground
-            source={{ uri: activeStory.imageUri }}
+            source={{ uri: activeStory.image }}
             style={styles.image}
           >
             <View style={styles.userInfo}>
-              <ProfilePicture uri={userStoriesState.user.imageUri} size={40} />
-              <Text style={styles.userName}>{userStoriesState.user.name} </Text>
-              <Text style={styles.postedTime}>{activeStory.postedTime} </Text>
+              <ProfilePicture uri={activeStory.user.image} size={40} />
+              <Text style={styles.userName}>{activeStory.user.name} </Text>
+              <Text style={styles.postedTime}>{activeStory.createdAt} </Text>
             </View>
 
             <View style={styles.bottomContainer}>

@@ -14,11 +14,13 @@ export const styles = StyleSheet.create({
     width: 120,
     alignItems: "center",
   },
-
   likes: {
     fontWeight: "bold",
   },
-  caption: {},
+  caption: {
+    margin: 3,
+    color: "black",
+  },
   postedTime: {
     color: "#8c8c8c",
   },
